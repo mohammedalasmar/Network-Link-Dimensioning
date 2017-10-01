@@ -56,7 +56,7 @@ function pushbutton1_Callback(hObject, eventdata, handles)
    
 global nn nnn 
 global ave VAR  T kk epsi  epsi_c1 epsi_c2 epsi_c3 epsi_c4 epsi_c5 T_array EPSI00
-
+global C1  C2 C3 C4 C5 
 T_array=[];
 epsi_c1=[];
 epsi_c2=[];
@@ -174,6 +174,7 @@ set(handles.uitable3,'Data',Epsi_all);
 function pushbutton2_Callback(hObject, eventdata, handles)
  global nn
 global nnn
+global C1  C2 C3 C4 C5 
 
 global T kk 
 sto=0;y=0;z=1;R=0;
@@ -201,7 +202,16 @@ for kk=1:length(x);
     %%% Plotting 
     figure(1)
      c=0:T:nn(end);
-    subplot(length(x),1,kk), stairs(c,y/T) , xlabel('time (sec)'), ylabel('data rate (bps)'),title(num2str(T)) 
+    subplot(length(x),1,kk), 
+    stairs(c,y/T) , xlabel('time (sec)'), ylabel('data rate (bps)'),title(['T= ', num2str(T)]) 
+    hline3 = refline([0 C1(kk)]);
+    hline3.Color = 'r';
+  hline4 = refline([0 C5(kk)]);
+    hline4.Color = 'g';
+      hline5 = refline([0 C4(kk)]);
+    hline5.Color = 'black';
+ 
+legend([hline3 hline4 hline5],{'C3 ','C4 ','C5 '})
 end
  
 
@@ -340,8 +350,20 @@ function pushbutton6_Callback(hObject, eventdata, handles)
 global   epsi_c1 T_array EPSI00
 err =epsi_c1;
 y =EPSI00* ones(1,length(epsi_c1)); 
+
 figure 
-bar(err,'r')
+hold on
+for i = 1:length(err)
+    h=bar(i,err(i));
+    if err(i) < EPSI00
+        set(h,'FaceColor','g');
+    else
+        set(h,'FaceColor','r');
+    end
+end
+hold off
+
+% bar(err,'r')
  
 for i=1:length(T_array)
 text(i, err(i)-0.0004 ,num2str(err(i)));
@@ -359,6 +381,7 @@ xlabel(' ','FontSize', 14)
 ylabel('Emperical Epsi','FontSize', 16) 
 
 
+
 % --- Executes on button press in pushbutton7.
 function pushbutton7_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton7 (see GCBO)
@@ -368,7 +391,18 @@ global   epsi_c2 T_array EPSI00
 err =epsi_c2;
 y =EPSI00* ones(1,length(epsi_c2)); 
 figure 
-bar(err,'r')
+
+figure 
+hold on
+for i = 1:length(err)
+    h=bar(i,err(i));
+    if err(i) < EPSI00
+        set(h,'FaceColor','g');
+    else
+        set(h,'FaceColor','r');
+    end
+end
+hold off
  
 for i=1:length(T_array)
 text(i, err(i)-0.0004 ,num2str(err(i)));
@@ -395,7 +429,17 @@ global   epsi_c3 T_array EPSI00
 err =epsi_c3;
 y =EPSI00* ones(1,length(epsi_c3)); 
 figure 
-bar(err,'r')
+figure 
+hold on
+for i = 1:length(err)
+    h=bar(i,err(i));
+    if err(i) < EPSI00
+        set(h,'FaceColor','g');
+    else
+        set(h,'FaceColor','r');
+    end
+end
+hold off
  
 for i=1:length(T_array)
 text(i, err(i)-0.0004 ,num2str(err(i)));
@@ -421,7 +465,17 @@ global   epsi_c5 T_array EPSI00
 err =epsi_c5;
 y =EPSI00* ones(1,length(epsi_c5)); 
 figure 
-bar(err,'r')
+figure 
+hold on
+for i = 1:length(err)
+    h=bar(i,err(i));
+    if err(i) < EPSI00
+        set(h,'FaceColor','g');
+    else
+        set(h,'FaceColor','r');
+    end
+end
+hold off
  
 for i=1:length(T_array)
 text(i, err(i)-0.0004 ,num2str(err(i)));
@@ -448,7 +502,17 @@ global   epsi_c4 T_array EPSI00
 err =epsi_c4;
 y =EPSI00* ones(1,length(epsi_c4)); 
 figure 
-bar(err,'r')
+figure 
+hold on
+for i = 1:length(err)
+    h=bar(i,err(i));
+    if err(i) < EPSI00
+        set(h,'FaceColor','g');
+    else
+        set(h,'FaceColor','r');
+    end
+end
+hold off
  
 for i=1:length(T_array)
 text(i, err(i)-0.0004 ,num2str(err(i)));

@@ -1,7 +1,7 @@
 function varargout = Diss2017(varargin)
 
 % DISS2017 MATLAB code for Diss2017.fig
-% Last Modified by GUIDE v2.5 29-Sep-2017 22:41:37
+% Last Modified by GUIDE v2.5 29-Sep-2017 23:26:56
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -845,6 +845,8 @@ function edit13_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+ 
+
  
 
  
